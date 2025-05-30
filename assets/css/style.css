@@ -1,3 +1,10 @@
+body {
+  background-image: url("/assets/img/dragonball2.img"); 
+  background-size: cover;      
+  background-repeat: no-repeat;
+  background-position: center center;
+  min-height: 100vh;
+}
 .resultados-container {
   width: 85%;
   margin: 0 auto;
