@@ -33,19 +33,53 @@ function renderizarPersonajes(personajes) {
     const col = document.createElement("div");
     col.classList.add("col-md-3", "mb-4");
 
-    col.innerHTML = `
-      <div class="p-3 border rounded text-center bg-light h-100">
-        <h5>${personaje.name}</h5>
-        <img src="${personaje.image}" alt="${personaje.name}" class="img-fluid rounded mb-2" style="max-height: 200px;">
-        <p><strong>Raza:</strong> ${personaje.race}</p>
-        <p><strong>Género:</strong> ${personaje.gender}</p>
-      </div>
+    // Crear tarjeta clickeable
+    const card = document.createElement('div');
+    card.className = "p-3 border rounded text-center bg-light h-100";
+    card.style.cursor = "pointer";
+
+    card.innerHTML = `
+      <h5>${personaje.name}</h5>
+      <img src="${personaje.image}" alt="${personaje.name}" class="img-fluid rounded mb-2" style="max-height: 200px;">
+      <p><strong>Raza:</strong> ${personaje.race || "Desconocida"}</p>
+      <p><strong>Género:</strong> ${personaje.gender || "Desconocido"}</p>
     `;
 
+    // Evento para abrir modal con detalles
+    card.addEventListener('click', () => {
+      mostrarModal(personaje);
+    });
+
+    col.appendChild(card);
     row.appendChild(col);
   });
 
   resultsDiv.appendChild(row);
+}
+
+function mostrarModal(personaje) {
+  const modalElement = document.getElementById('personajeModal');
+  const modalBody = modalElement.querySelector('.modal-body');
+  const modalTitle = modalElement.querySelector('.modal-title');
+
+  modalTitle.textContent = personaje.name;
+
+  modalBody.innerHTML = `
+    <div class="d-flex flex-column flex-md-row gap-4">
+      <img src="${personaje.image}" alt="${personaje.name}" class="img-fluid rounded" style="max-width: 250px;">
+      <div>
+        <p><strong>Raza:</strong> ${personaje.race || "Desconocida"}</p>
+        <p><strong>Género:</strong> ${personaje.gender || "Desconocido"}</p>
+        <p><strong>Fecha de aparición:</strong> ${personaje.first_appearance || "No disponible"}</p>
+        <p><strong>Transformaciones:</strong> ${personaje.transformations ? personaje.transformations.join(", ") : "Ninguna"}</p>
+        <p><strong>Descripción:</strong> ${personaje.description || "No hay descripción disponible."}</p>
+      </div>
+    </div>
+  `;
+
+  // Mostrar el modal con Bootstrap
+  const modal = new bootstrap.Modal(modalElement);
+  modal.show();
 }
 
 function limpiarResultados() {
@@ -70,7 +104,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     try {
       const personajes = await buscarPersonajes(nombre);
-      personajesGuardados = personajes;  // Guardamos los personajes
+      personajesGuardados = personajes;
       renderizarPersonajes(personajes);
     } catch (error) {
       resultsDiv.textContent = "Ocurrió un error al consultar la API.";
@@ -82,7 +116,7 @@ document.addEventListener('DOMContentLoaded', function () {
     resultsDiv.textContent = "Cargando personajes...";
     try {
       const personajes = await buscarPersonajes();
-      personajesGuardados = personajes;  // Guardamos los personajes
+      personajesGuardados = personajes;
       renderizarPersonajes(personajes);
     } catch (error) {
       resultsDiv.textContent = "Ocurrió un error al cargar los personajes.";
@@ -90,3 +124,4 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 });
+

@@ -9,3 +9,82 @@ body {
   width: 85%;
   margin: 0 auto;
 }
+/* Estilo para el formulario de búsqueda */
+#searchForm {
+  background: linear-gradient(90deg, #ff6f00, #ffcc00); /* naranja a amarillo */
+  padding: 15px;
+  border-radius: 12px;
+  box-shadow: 0 0 15px 3px rgba(255, 140, 0, 0.7);
+  border: 2px solid #fbc02d;
+}
+.buscador-container {
+  background: linear-gradient(90deg, #ffb74d, #ffca28); /* Amarillos cálidos */
+  border-radius: 15px;
+  padding: 25px 20px;
+  box-shadow: 0 4px 12px rgba(255, 167, 38, 0.5); /* sombra suave */
+  border: 2px solid #fbc02d;
+  transition: transform 0.3s ease;
+}
+.buscador-container:hover {
+  transform: scale(1.02);
+}
+#searchForm {
+  background: linear-gradient(90deg, #ff8f00, #fbc02d); /* naranja a amarillo */
+  padding: 12px 15px;
+  border-radius: 12px;
+  border: 2px solid #f57c00;
+  display: flex;
+  gap: 10px;
+}
+
+#characterName {
+  border: 2px solid #f57c00;
+  border-radius: 8px;
+  padding: 10px 15px;
+  font-weight: 600;
+  color: #3e2723;
+  background-color: #fff8e1;
+  flex-grow: 1;
+  transition: border-color 0.3s ease;
+}
+
+#characterName:focus {
+  border-color: #ff6f00;
+  outline: none;
+}
+#searchForm button {
+  background: #ef6c00;
+  border: 2px solid #e65100;
+  color: white;
+  font-weight: bold;
+  padding: 10px 25px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#searchForm button:hover {
+  background-color: #ff8f00;
+}
+#verTodos {
+  background: linear-gradient(90deg, #fbc02d, #f57c00);
+  border: 2px solid #e65100;
+  color: #3e2723;
+  font-weight: 700;
+  padding: 12px 0;
+  border-radius: 10px;
+  width: 100%;
+  box-shadow: 0 2px 8px rgba(255, 152, 0, 0.6);
+  transition: background-color 0.3s ease, color 0.3s ease;
+  cursor: pointer;
+}
+
+#verTodos:hover {
+  background: #ef6c00;
+  color: white;
+  box-shadow: 0 4px 12px rgba(255, 152, 0, 0.9);
+}
+
+footer {
+  background-color: #e65100;
+}
