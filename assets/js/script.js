@@ -24,9 +24,11 @@ document.addEventListener('DOMContentLoaded', function () {
       }
 
       const data = await response.json();
-      const personajes = data.items;
+      console.log(data); // Para ver la estructura de la respuesta en consola
 
-      if (personajes.length === 0) {
+      const personajes = data.items || data;
+
+      if (!Array.isArray(personajes) || personajes.length === 0) {
         resultsDiv.textContent = "No se encontraron personajes con ese nombre.";
         return;
       }
@@ -72,9 +74,11 @@ document.addEventListener('DOMContentLoaded', function () {
       }
 
       const data = await response.json();
-      const personajes = data.items;
+      console.log(data); // Para ver la estructura de la respuesta
 
-      if (personajes.length === 0) {
+      const personajes = data.items || data;
+
+      if (!Array.isArray(personajes) || personajes.length === 0) {
         resultsDiv.textContent = "No se encontraron personajes.";
         return;
       }
